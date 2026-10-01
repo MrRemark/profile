@@ -1,62 +1,115 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reinout's own coded profile site!</title>
     <meta name="description" content="This is a profile site I coded to practise my front-end skills!">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
     <link rel="stylesheet" href="styles.css">
-    
-    
+    <script src="main.js"></script>
+    <!-- EMAILJS INTEGRATION -->
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("user_XwUIwe5oOVr2RRG2vftDT");
+        })();
+
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // generate a five digit number for the contact_number variable
+                this.contact_number.value = Math.random() * 100000 | 0;
+                // these IDs from the previous steps
+                emailjs.sendForm('service_3r4bt6j', 'template_5fwkbsq', this)
+                    .then(function() {
+                        alert("Thanks for your message, I'll contact you within 2 business days.");
+                        event.target.reset();
+                    }, function(error) {
+                        alert("Whoops! It looks like something went wrong. Please reach out to info@rynout.com instead.");
+                        console.log('SENDING CONTACT FORM EMAIL FAILED!', error);
+                    });
+            });
+        }
+
+    </script>
+
 
 </head>
 
 <body>
 
-<!-- INTRO SECTION -->
+    <!-- HEADER -->
 
-        <div class="card card--intro">
-            <img class="profile-picture profile-picture--reinout" src="./images/profielfoto.png" alt="Reinout's profile picture"/>
-            <div>
-                <h1>Reinout Kramer</h1>
-            </div>
-            <div>
-                <h3>Low-code Junior</h3>
-            </div>
-            <div>
-                <p>
-                    <span class="marker-span"><i class="fas fa-map-marker-alt marker-icon"></i>
-                    <strong>Rotterdam, the Netherlands</strong></span>
-                </p>
-            </div>
-            <div>
-                <ul class="horizontal-list contact-icons">
-                    <li><span><a target="_blank" href="https://nl.linkedin.com/in/reinout-kramer"><i class="fab fa-linkedin-in"></i></a></span></li>
-                    <li><span><a href="tel:+316368223"> <i class="fas fa-phone"></i></a></span></li>
-                    <li><span><a href="mailto:info@rynout.com"> <i class="fas fa-envelope"></i></a></span></li>
+    <header>
+        <div class="header-content">
+            <img src="./images/rynout-logo-compressed.png" alt="Rynout-Logo">
+            <input type="checkbox" id="nav-toggle">
+            <nav>
+                <ul class="navigation-menu">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#getintouch">Contact</a></li>
                 </ul>
-            </div>
-        </div>  
-        
-<!-- ABOUT SECTION -->
+            </nav>
+            <label for="nav-toggle" class="nav-toggle-label">
+                <i class="fas fa-bars"></i>
+            </label>
+        </div>
+    </header>
 
-        <div class="card">
-            <span><h2>A little bit about me:</h2></span>
-            <p class="paragraph-lineheight">I’m a low-code junior/autodidact looking for a professional challenge in information technology, working in a team of passionate people.<br/>
-            I excel in communication and product ownership and I have hands-on experience with the Mendix low-code platform.<br/>
-            I come with a no-nonsense attitude, a great drive to learn, and a desire to add value to the team and the result of a product or project.<br/>
-            I <i class="fas fa-heart heart-span"></i> books, trips, music, and cooking.
-            <div>
-                <button class="button" href="#getintouch">Find out more</button>
+    <!-- INTRO SECTION -->
+
+    <section id="intro">
+        <div class="section-content dual-section intro-content">
+            <div class="info">
+                <div class="info-content">
+                    <h1>Reinout<br />Kramer</h1>
+                    <h3>Low-code Junior</h3>
+                    <p>
+                        <span class="marker-span"><i class="fas fa-map-marker-alt marker-icon"></i>
+                            <strong>Rotterdam, the Netherlands</strong></span>
+                    </p>
+                    <ul class="horizontal-list contact-icons">
+                        <li><span><a target="_blank" href="https://nl.linkedin.com/in/reinout-kramer"><i class="fab fa-linkedin-in"></i></a></span></li>
+                        <li><span><a href="tel:+316368223"> <i class="fas fa-phone"></i></a></span></li>
+                        <li><span><a href="mailto:info@rynout.com"> <i class="fas fa-envelope"></i></a></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="image">
+                <img class="profile-picture" src="./images/reinout_kramer.jpg" alt="Reinout's profile picture" />
             </div>
         </div>
+    </section>
 
-<!-- SKILLS SECTION -->
+    <!-- ABOUT SECTION -->
 
-        <div class="card skills">
-        <h2>What I can do:</h2>
+    <section id="about">
+        <div class="section-content">
+            <span>
+                <h2>A little bit about me:</h2>
+            </span>
+            <p class="paragraph-lineheight">I’m a low-code junior/autodidact looking for a professional challenge in information technology, working in a team of passionate people.<br />
+                I excel in communication and product ownership and I have hands-on experience with the Mendix low-code platform.<br />
+                I come with a no-nonsense attitude, a great drive to learn, and a desire to add value to the team and the result of a product or project.<br />
+                I <i class="fas fa-heart heart-span"></i> books, trips, music, and cooking.
+                <div>
+                    <a href="#getintouch"><button class="button">Find out more</button></a>
+                </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+
+    <section id="skills">
+        <div class="section-content">
+            <h2>What I can do:</h2>
             <div>
                 <i class="fas fa-project-diagram"></i>
                 <h4>Build beautiful logic</h4>
@@ -93,68 +146,85 @@
                 <p>Once I believe in an idea, I start to obsess about how it can be conveyed strategically, using words or images.</p>
             </div>
             <div>
-                <button class="button" href="/files/CV Reinout 2020 V2 WEBSITE.pdf" target="blank">View Resume</button>
+                <a href="/files/CV Reinout 2020 V2 WEBSITE.pdf" target="blank"><button class="button">View Resume</button></a>
             </div>
         </div>
+    </section>
 
-<!-- TESTIMONIALS SECTION -->
+    <!-- PICTURES SECTION -->
 
-        <div class="card testimonials">
+    <section id="pictures">
+        <div>
+            <img src="./images/square1.jpg">
+            <img src="./images/square2.jpg">
+            <img src="./images/square3.jpg">
+            <img src="./images/square4.jpg">
+        </div>
+
+
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+
+    <section id="testimonials">
+        <div class="section-content">
             <h2>Some kind words:</h2>
             <div id="carousel" class="carousel slide">
                 <ol class="carousel-indicators">
-                <li data-target="#carousel" data-slide-to="0" class="slide-indicator active"></li>
-                <li data-target="#carousel" data-slide-to="1" class="slide-indicator"></li>
-                <li data-target="#carousel" data-slide-to="2" class="slide-indicator"></li>
+                    <li data-target="#carousel" data-slide-to="0" class="slide-indicator active"></li>
+                    <li data-target="#carousel" data-slide-to="1" class="slide-indicator"></li>
+                    <li data-target="#carousel" data-slide-to="2" class="slide-indicator"></li>
                 </ol>
 
                 <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="testimonial">
-                                <img class="profile-picture" src="./images/inge.jpeg" alt="First slide"><br />
-                                <strong>Inge van Baalen</strong><br />
-                                <p>“(Reinout)… heeft hij een belangrijke rol gespeeld in de verbeterslag die wij uitgevoerd hebben in onze marketingmiddelen en -kanalen.”</p>
-                            </div>
-                        </div>    
-                        <div class="carousel-item">
-                            <div class="testimonial">
-                                <img class="profile-picture" src="./images/jan.jpeg" alt="Second slide"><br />
-                                <strong>Jan de Lange</strong><br />
-                                <p>"Reinout is analytisch sterk; hij stelt de juiste vragen om bedrijfsprocessen te doorgronden en hoofd- van bijzaken te onderscheiden. Daarnaast heeft hij een goed gevoel voor esthetiek én humor."</p>
-                            </div>
+                    <div class="carousel-item active">
+                        <div class="testimonial">
+                            <img class="profile-picture" src="./images/inge.jpeg" alt="First slide"><br />
+                            <strong>Inge van Baalen</strong><br />
+                            <p>“(Reinout)… heeft hij een belangrijke rol gespeeld in de verbeterslag die wij uitgevoerd hebben in onze marketingmiddelen en -kanalen.”</p>
                         </div>
-                        <div class="carousel-item">
-                            <div class="testimonial">
-                                <img class="profile-picture" src="./images/marco.jpeg" alt="Third slide"><br />
-                                <strong>Marco Maruccia</strong><br />
-                                <p>“Reinout Kramer is a enthousiastic hard-working person with great personal skills. Reinout works with passion and he is very precise in his job – projects. I would recommend Reinout for any large multinational.”</p>
-                            </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial">
+                            <img class="profile-picture" src="./images/jan.jpeg" alt="Second slide"><br />
+                            <strong>Jan de Lange</strong><br />
+                            <p>"Reinout is analytisch sterk; hij stelt de juiste vragen om bedrijfsprocessen te doorgronden en hoofd- van bijzaken te onderscheiden. Daarnaast heeft hij een goed gevoel voor esthetiek én humor."</p>
                         </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial">
+                            <img class="profile-picture" src="./images/marco.jpeg" alt="Third slide"><br />
+                            <strong>Marco Maruccia</strong><br />
+                            <p>“Reinout Kramer is a enthousiastic hard-working person with great personal skills. Reinout works with passion and he is very precise in his job – projects. I would recommend Reinout for any large multinational.”</p>
+                        </div>
+                    </div>
                 </div>
 
                 <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                <span><i class="fas fa-chevron-left arrow-icon" aria-hidden="true"></i></span>
-                <span class="sr-only">Previous</span>
+                    <span><i class="fas fa-chevron-left arrow-icon" aria-hidden="true"></i></span>
+                    <span class="sr-only">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                <span><i class="fas fa-chevron-right arrow-icon" aria-hidden="true"></i></span>
-                <span class="sr-only">Next</span>
+                    <span><i class="fas fa-chevron-right arrow-icon" aria-hidden="true"></i></span>
+                    <span class="sr-only">Next</span>
                 </a>
             </div>
         </div>
+    </section>
 
-<!-- CONTACT SECTION -->
-        
-        <div class="contact" id="getintouch">
-            <div class="card cta">
+    <!-- CONTACT SECTION -->
+
+    <section class="" id="getintouch">
+        <div class="section-content dual-section">
+            <div class="cta">
                 <div class="cta-div">
                     <div>
                         <h2>Let's have coffee!</h2>
                     </div>
                     <div>
-                        <p class="paragraph-lineheight">You pick the time and place.<br/>
-                        And don’t worry, I travel great distances for quality coffee.<br/>
-                        If you're nice, I might even buy YOU one.<br/></p>
+                        <p class="paragraph-lineheight">You pick the time and place.<br />
+                            And don’t worry, I travel great distances for quality coffee.<br />
+                            If you're nice, I might even buy YOU one.<br /></p>
                     </div>
                     <div class="icons-div">
                         <span><img src="./images/rynout-logo-compressed.png" alt="Rynout-Logo"></span>
@@ -164,38 +234,46 @@
                 </div>
             </div>
 
-            <div class="card form">
-                <form> 
-                    <div class="contact-div">    
+            <div class="form">
+                <form id="contact-form">
+                    <div class="contact-div">
                         <div class="form-row-div">
                             <h2>Send me a message:</h2>
                         </div>
                         <div class="form-row-div">
-                            <input type="text" name="name" placeholder="Your name...">
+                            <input type="hidden" name="contact_number"> <!-- FOR EMAILJS INTEGRATION -->
+                            <input type="text" name="name" placeholder="Your name..." required> <!-- FIELD NAME IS REFERRED TO IN EMAIL TEMPLATE! -->
                         </div>
                         <div class="form-row-div">
-                            <input type="text" name="email" placeholder="Your e-mail address...">
+                            <input type="text" name="email" placeholder="Your e-mail address..." required> <!-- FIELD NAME IS REFERRED TO IN EMAIL TEMPLATE! -->
                         </div>
                         <div class="form-row-div">
-                            <textarea name="message" placeholder="Your message..."></textarea>
+                            <textarea name="message" placeholder="Your message..."></textarea> <!-- FIELD NAME IS REFERRED TO IN EMAIL TEMPLATE! -->
                         </div>
                         <div class="form-row-div submit-button-row">
                             <button class="button submit-button" type="submit" name="submit">Submit</button>
                         </div>
                     </div>
                 </form>
-            </div>  
-        </div> 
+            </div>
+        </div>
+    </section>
 
+    <!-- FOOTER -->
 
+    <footer>
+        <div class="footer-content">
+            <span>© 2020 All rights reserved, Reinout Kramer. Photography by <a target="_blank" href="https://www.linstrafotografie.nl/">LinStra Fotografie</a> </span>
+        </div>
+    </footer>
 
+    <!-- SCRIPTS -->
 
-
-    <p>See ya later! <i class="fas fa-smile-beam"></i></p>
-
-<script src="https://kit.fontawesome.com/3f5585e1e6.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+    <script src="https://kit.fontawesome.com/3f5585e1e6.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -1,107 +1,75 @@
+/* GENERAL */
+
+
 body {
-    background-color: lightgray;
     color: #404040;
     font-family: sans-serif;
-    margin: auto;
-    max-width: 1280px;
-    width: 75%;
 }
 
-h1, h2 {
-    font-size: 1vw;
+h1,
+h2 {
     font-weight: 700;
 }
 
-h1 { 
-    margin: 30px 0 10px; /* Collapsing top/bottom margins for headings */
+h1 {
+    font-size: 2.5vw;
+    margin: 30px 0 10px;
+    /* Collapsing top/bottom margins for headings */
 }
 
 h2 {
+    font-size: 1vw;
     margin: 30px 0 30px;
 }
 
 h3 {
     font-size: .75vw;
     font-style: italic;
-    margin: 0 0 20px; 
+    margin: 0 0 20px;
 }
 
 h4 {
     letter-spacing: .1em;
     margin: 20px 0 10px;
     text-transform: uppercase;
-} 
+}
 
 p {
     font-size: 1.1rem;
-}
-
-.card {
-    background-color: white;
-    box-shadow: 5px 10px 5px 5px rgba(0, 0, 0, 0.2);
-    margin: 0 0 75px; /* Margin on bottom only to prevent collapsing margins between cards. */
-    padding: 30px 40px;
-    text-align: center;
-}
-
-.card--intro {
-    background-image: url(./images/background.png), linear-gradient(to right bottom,#fff 20%,#ec6909) !important;
-    background-position: bottom right;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-origin: padding-box;
-    border-bottom: 50px solid white; /* Undoes .card padding and keeps distance between the "dip" of the background image graphic from the bottom of the card. */
-    margin-top: 75px;
-    padding-bottom: 0px;
-}
-
-.profile-picture {
-    border-radius: 50%;
-    margin: 10px auto 10px; /* Overrides body 0 margin top/bottom whilst maintaining center alignment. */
-    max-height: 200px;
-    max-width: 200px;
-}
-
-.marker-icon {
-    color: #ec6909;
-    padding: 0px 8px;
-}
-
-.horizontal-list {
-    list-style: none;
-    margin: 10px;
-    padding-left: 0;
-}
-
-.horizontal-list li {
-    box-sizing: content-box; /* Ensures that left/right padding does not eat into list item's dimensions. */
-    display: inline-block;
-    padding: 0 10px;
-}
-
-.contact-icons li { /* Keeps list items square regardless of different dimensions between bold and solid FA icons */
-    height: 1vw; 
-    width: 1vw;
-}
-
-.contact-icons i { 
-    background-color: #404040;
-    border-radius: 10%;
-    color: white;
-    font-size: 0.5vw;
-    height: 100%; /* Keeps FA icons centered and strechted to square list item dimensions. */
-    padding: 20%;
-    transition: transform 0.5s;
-    width: 100%;
-
 }
 
 .paragraph-lineheight {
     line-height: 2;
 }
 
-.fa-heart {
-    color: red;
+section {
+    margin-bottom: 75px;
+    /* Margin on bottom only to prevent collapsing margins between cards. */
+    padding: 30px 0;
+}
+
+section,
+header,
+footer {
+    text-align: center;
+}
+
+section > div,
+header > div {
+    margin: 0 auto;
+}
+
+.section-content,
+.header-content,
+.footer-content {
+    width: 75%;
+    max-width: 1500px;
+}
+
+.dual-section {
+    /* Puts two divs side-by-side */
+    display: flex;
+    justify-content: space-between;
 }
 
 .button {
@@ -117,7 +85,8 @@ p {
     transition: transform .5s;
 }
 
-.button:hover, .contact-icons i:hover {
+.button:hover,
+.contact-icons i:hover {
     transform: scale(1.1);
 }
 
@@ -125,23 +94,196 @@ p {
     font-weight: 500;
 }
 
-/* .button:hover::after {
-    content: " \f054";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-}  */
 
-.skills i {
+/* HEADER */
+
+
+header {
+    background-color: white;
+    border-bottom: 3px solid #EA7B19;
+    position: sticky;
+    /* Makes header stick to the top when user scrolls, without removing header from document flow. */
+    top: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+.header-content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    /* Gives first column as much space as needed to fit content  (the logo image), and assigns all leftover space to second column (the navigation menu). */
+    position: relative;
+    /* Puts this class back in the document flow, so child elements can be positioned against its width. */
+    text-align: left;
+    /* Aligns logo image to the left. */
+}
+
+header img {
+    height: 75px;
+    margin: 10px 0;
+    width: 75px;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+header ul {
+    list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+header li {
+    display: inline-block;
+}
+
+#nav-toggle {
+    display: none;
+    /*  Removes input checkbox - the label is also clickable and will act as input. */
+}
+
+.nav-toggle-label i {
+    display: none;
+}
+
+nav a {
+    color: #404040;
+    font-weight: 700;
+    margin: 0 10px 10px;
+}
+
+nav a:hover {
+    color: #404040;
+    text-decoration: none;
+}
+
+
+/* INTRO SECTION */
+
+
+#intro {
+    background-image: url(./images/background.png), linear-gradient(to right bottom, #fff 20%, #ec6909) !important;
+    background-position: bottom right;
+    background-size: cover;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: left;
+}
+
+.image,
+.info {
+    height: 480px;
+}
+
+.profile-picture {
+    border-radius: 50%;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.marker-icon {
+    color: #ec6909;
+    padding: 0 8px 0 0;
+}
+
+.horizontal-list {
+    list-style: none;
+    margin: 10px 0;
+    padding-left: 0;
+    /* Undoes browser-default left padding. */
+}
+
+.horizontal-list li {
+    box-sizing: content-box;
+    /* Ensures that left/right padding does not eat into list item's dimensions. */
+    display: inline-block;
+    padding: 0 10px;
+}
+
+.contact-icons li {
+    /* Keeps contact icons square regardless of different dimensions between bold and solid FA icons */
+    height: 1vw;
+    width: 1vw;
+}
+
+.contact-icons li:first-child {
+    padding-left: 0;
+}
+
+.contact-icons a {
+    text-align: center;
+}
+
+.contact-icons i {
+    background-color: #404040;
+    border-radius: 10%;
+    color: white;
+    font-size: 0.5vw;
+    height: 100%;
+    /* Keeps FA icons centered and strechted to square list item dimensions. */
+    padding: 20%;
+    /* Keeps contact icons center in their squares. */
+    transition: transform 0.5s;
+    width: 100%;
+    /* Ensures FA icons take up all available width despite differences in dimensions between FA brand icons and solid icons. */
+}
+
+/* ABOUT SECTION */
+
+
+#about {
+    background-color: #404040;
+    color: white;
+}
+
+.fa-heart {
+    color: red;
+}
+
+
+/* SKILLS SECTION */
+
+
+#skills i {
     color: #ec6909;
     font-size: 2.5em;
 }
 
-.skills div {
+#skills div {
     padding: 30px 0 30px;
+    /* Extra top/bottom padding between the different skills */
 }
 
+
+/* PICTURES SECTION */
+
+
+#pictures > div {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    /* Undo padding of div's that are direct children of a section. */
+}
+
+#pictures img {
+    width: 25%;
+}
+
+
+/* TESTIMONIAL SECTION */
+
+
+
 .testimonial {
-    height: 500px; /* Prevents carousel height changing with variable carousel-item content */
+    height: 500px;
+    /* Prevents carousel height changing with variable carousel-item content */
     margin: 0 auto;
     padding: 30px 0 20px;
     width: 75%;
@@ -152,8 +294,8 @@ p {
 }
 
 .arrow-icon {
-   color: #404040;
-   font-size: 1.5rem;
+    color: #404040;
+    font-size: 1.5rem;
 }
 
 .carousel-indicators li {
@@ -173,26 +315,36 @@ p {
 }
 
 
+/* CONTACT SECTION */
 
-.contact { /* Puts cta and form side-by-side */
-    display: flex;
-    justify-content: space-between;
+
+#getintouch {
+    background-color: #404040;
+    margin-bottom: 0;
+    /* Undoes section margin-bottom, since this is the last section on the page. */
 }
 
-.cta, .form {
-    width: 45%; 
+.cta,
+.form {
+    background-color: white;
+    margin-top: 75px;
+    /* Overrules margin-top zero value of div's which are direct children of a section. */
+    padding: 30px 40px;
+    width: 600px;
 }
 
-.cta-div, .contact-div {
+.cta-div,
+.contact-div {
     border: solid 1px;
     display: grid;
-    height: 480px; /* Maintains equal height of both bordered divs regardless of their content. */
+    height: 480px;
+    /* Maintains equal height of both bordered divs regardless of their content. */
     padding: 20px;
     text-align: left;
 }
 
 .cta-div {
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: 2fr 1fr 3fr;
 }
 
 .contact-div {
@@ -210,26 +362,31 @@ p {
     text-align: right;
 }
 
-.cta-div h2 {
-    font-size: 1.5vw;
+#getintouch h2 {
+    margin-top: 0;
+    /* Removes top margin from both headings in the getintouch section */
 }
 
-.contact h2 {
-    margin-top: 0; /* Removes top margin from both headings in the contact div */
+.cta h2 {
+    font-size: 1.6vw;
 }
-
-.icons-div i{
-    font-size: 2.5vw;
-}
-
-.icons-div img {
-    width: 3vw;
-}   
 
 .icons-div {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+}
+
+.icons-div i {
+    font-size: 2.5vw;
+}
+
+.icons-div img {
+    width: 3vw;
+}
+
+.icons-div span {
+    padding: 25px 15px 0px;
 }
 
 .icons-div span:first-child {
@@ -240,10 +397,6 @@ p {
     padding-right: 0;
 }
 
-.icons-div span {
-    padding: 25px 15px 0px;
-}
-
 .form-row-div {
     margin-bottom: 25px;
 }
@@ -252,7 +405,8 @@ p {
     margin-bottom: 0;
 }
 
-input, textarea {
+input,
+textarea {
     width: 100%;
     background-color: #eeeeee;
     padding: 15px;
@@ -269,191 +423,402 @@ textarea {
 }
 
 .submit-button {
-    margin: 0px 0px 0px 20px; /* Undoes right margin from .button */
+    margin: 0px 0px 0px 20px;
+    /* Undoes right margin from .button */
 }
 
-/* MEDIA QUERIES BELOW */
+/* FOOTER */
+
+footer {
+    background-color: #222;
+    padding: 15px 0;
+}
+
+footer a {
+    font-weight: 700;
+    color: #666;
+}
+
+footer a:hover {
+    color: currentColor;
+    text-decoration: none;
+    /* Undoes browser default link styling */
+    opacity: .7;
+}
+
+
+/* MEDIA QUERIES */
+
+
+@media (max-width: 3600px) {
+    .cta h2 {
+        font-size: 1.8vw;
+        /* Up from 1.6 */
+    }
+}
+
+@media (max-width: 3200px) {
+    .cta h2 {
+        font-size: 2.1vw;
+        /* Up from 1.8 */
+    }
+
+    .icons-div i {
+        font-size: 3vw;
+        /* Up from 2.5 */
+    }
+
+    .icons-div img {
+        width: 3.5vw;
+        /* Up from 3 */
+    }
+}
 
 @media (max-width: 2800px) {
-    h1, h2 {
-        font-size: 1.5vw; /* Up from 1 */
+    h1 {
+        font-size: 3vw;
+        /* Up from 2.5 */
+    }
+
+    h2 {
+        font-size: 1.5vw;
+        /* Up from 1 */
     }
 
     .cta h2 {
-        font-size: 1.75vw; /* Up from 1.5 */
+        font-size: 2.4vw;
+        /* Up from 2.1 */
     }
 
     .contact-icons i {
-        font-size: 0.75vw; /* Up from 0.5 */
+        font-size: 0.75vw;
+        /* Up from 0.5 */
     }
 
     .contact-icons li {
-        height: 1.5vw; /* Up from 1 */
+        height: 1.5vw;
+        /* Up from 1 */
         width: 1.5vw;
     }
 
     h3 {
-        font-size: 1vw; /* Up from 0.75 */
+        font-size: 1vw;
+        /* Up from 0.75 */
     }
 
-    .icons-div i{
-        font-size: 3.5vw; /* Up from 2.5 */
+    .icons-div i {
+        font-size: 3.5vw;
+        /* Up from 3 */
     }
-    
+
     .icons-div img {
-        width: 4vw; /* Up from 3 */
+        width: 4vw;
+        /* Up from 3.5 */
     }
 
     textarea {
-        max-height: 4.5vw; /* Up from 3 */
+        max-height: 4.5vw;
+        /* Up from 3 */
     }
 }
 
-@media (max-width: 1600px) {
-    h1, h2 {
-        font-size: 2vw; /* Up from 1.5 */
+@media (max-width: 2400px) {
+    .cta h2 {
+        font-size: 3vw;
+        /* Up from 2.4 */
+    }
+}
+
+@media (max-width: 2000px) {
+    h1 {
+        font-size: 3.5vw;
+        /* Up from 3 */
+    }
+
+    h2 {
+        font-size: 2vw;
+        /* Up from 1.5 */
     }
 
     .cta h2 {
-        font-size: 3vw; /* Up from 2.25 */
+        font-size: 3.55vw;
+        /* Up from 3 */
     }
 
     .contact-icons i {
-        font-size: 1vw; /* Up from 0.75 */
+        font-size: 1vw;
+        /* Up from 0.75 */
     }
 
     .contact-icons li {
-        height: 2vw; /* Up from 1.5 */
+        height: 2vw;
+        /* Up from 1.5 */
         width: 2vw;
     }
 
     h3 {
-        font-size: 1.25vw; /* Up from 1 */
+        font-size: 1.25vw;
+        /* Up from 1 */
     }
 
     .icons-div i {
-        font-size: 4.5vw; /* Up from 3.5 */
+        font-size: 4.5vw;
+        /* Up from 3.5 */
     }
 
     .icons-div img {
-        width: 5vw; /* Up from 3 */
+        width: 5vw;
+        /* Up from 4 */
     }
 
     textarea {
-        max-height: 6vw; /* Up from 4.5 */
+        max-height: 6vw;
+        /* Up from 4.5 */
     }
 }
 
-@media (max-width: 1200px) {
-    .contact {
+@media (max-width: 1601px) {
+    .cta h2 {
+        font-size: 4vw;
+        /* Up from 3.4 */
+    }
+}
+
+@media (max-width: 1480px) {
+    .dual-section {
         display: block;
+        padding: 75px 0;
     }
 
-    .cta, .form {
-        width: 100%; 
+    .intro-content {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .info {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .cta,
+    .form {
+        width: 100%;
     }
 
     .cta-div {
-        height: 400px;
+        height: 440px;
+        /* CTA can now be lower than form since they're no longer side-by-side. */
     }
 
     .contact-icons i {
-        font-size: 1.5vw; /* Up from 1 */
+        font-size: 1.5vw;
+        /* Up from 1 */
     }
 
     .contact-icons li {
-        height: 3vw; /* Up from 2 */
+        height: 3vw;
+        /* Up from 2 */
         width: 3vw;
     }
 
-    h1, h2 {
-        font-size: 3vw; /* Up from 2 */
+    h1 {
+        font-size: 3.5vw;
+        /* Up from 3 */
+    }
+
+
+    h2 {
+        font-size: 3vw;
+        /* Up from 2 */
     }
 
     .cta h2 {
-        font-size: 4vw; /* Up from 3 */
+        font-size: 4vw;
+        /* Up from 3 */
     }
 
     h3 {
-        font-size: 2vw; /* Up from 1.25 */
+        font-size: 2vw;
+        /* Up from 1.25 */
     }
 
     .icons-div i {
-        font-size: 9vw; /* Up from 4.5 */
+        font-size: 9vw;
+        /* Up from 5.5 */
     }
 
     .icons-div img {
-        width: 10vw; /* Up from 5 */
+        width: 10vw;
+        /* Up from 6 */
     }
 
     textarea {
-        max-height: 12vw; /* Up from 6 */
+        max-height: 8vw;
+        /* Up from 6 */
+    }
+
+    #pictures img {
+        width: 50%;
     }
 }
 
+
 @media (max-width: 768px) {
+
+    header li {
+        display: block;
+        /* Makes navigation list items vertical. */
+    }
+
+    #nav-toggle:checked ~ nav {
+        /* display: block;  Displays mobile navigation when input checkbox is checked. */
+        transform: scale(1, 1);
+    }
+
+    .nav-toggle-label {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        /* Vertically aligns hamburger in header. */
+        padding: 10px 15px;
+        /* Equals navigation items padding. */
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    nav {
+        background-color: white;
+        /* display: none;  Ensures mobile menu is collapsed by default. */
+        position: absolute;
+        right: 0;
+        top: 100%;
+        text-align: right;
+        transform: scale(1, 0);
+        transform-origin: top;
+        transition: transform 400ms ease-in;
+        width: 100%;
+    }
+
+    nav li {
+        padding: 10px 15px;
+    }
+
+    nav li:hover {
+        background-color: rgba(0, 0, 0, .03);
+    }
+
+    nav a {
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+        /* Transition from checked to unchecked. */
+    }
+
+    .nav-toggle-label i {
+        display: block;
+        /* Shows the hamburger icon. */
+    }
+
+    #nav-toggle:checked ~ nav a {
+        opacity: 1;
+        transition: opacity 200ms ease-in-out 200ms;
+        /* Transition from unchecked to checked. */
+    }
+
     .contact-icons i {
-        font-size: 2.5vw; /* Up from 1.5 */
+        font-size: 2.5vw;
+        /* Up from 1.5 */
     }
 
     .contact-icons li {
-        height: 5vw; /* Up from 3 */
+        height: 5vw;
+        /* Up from 3 */
         width: 5vw;
     }
 
-    h1, h2 {
-        font-size: 4vw; /* Up from 3 */
+    h1 {
+        font-size: 5.5vw;
+        /* Up from 3.5 */
+    }
+
+    h2 {
+        font-size: 4vw;
+        /* Up from 3 */
     }
 
     .cta h2 {
-        font-size: 5vw; /* Up from 4 */
+        font-size: 5vw;
+        /* Up from 4 */
     }
 
     h3 {
-        font-size: 3vw; /* Up from 2 */
+        font-size: 3vw;
+        /* Up from 2 */
     }
 
     .icons-div i {
-        font-size: 10vw; /* Up from 9 */
+        font-size: 10vw;
+        /* Up from 9 */
     }
 
     .icons-div img {
-        width: 11vw; /* Up from 10 */
+        width: 11vw;
+        /* Up from 10 */
     }
 
     .testimonial {
         height: 600px;
     }
+
+    .cta-div {
+        height: 390px;
+    }
 }
 
 @media (max-width: 480px) {
     .contact-icons i {
-        font-size: 3.5vw; /* Up from 2.5 */
+        font-size: 3.5vw;
+        /* Up from 2.5 */
     }
 
     .contact-icons li {
-        height: 7vw; /* Up from 5 */
+        height: 7vw;
+        /* Up from 5 */
         width: 7vw;
     }
 
-    h1, h2 {
-        font-size: 5vw; /* Up from 4 */
+    h1 {
+        font-size: 15vw;
+        /* Up from 5.5 */
+    }
+
+    h2 {
+        font-size: 5vw;
+        /* Up from 4 */
+    }
+
+    #pictures img {
+        width: 100%;
     }
 
     .cta h2 {
-        font-size: 6vw; /* Up from 5 */
+        font-size: 6vw;
+        /* Up from 5 */
     }
 
     h3 {
-        font-size: 4vw; /* Up from 3 */
+        font-size: 4vw;
+        /* Up from 3 */
     }
 
     .icons-div i {
-        font-size: 9vw; /* Down from 10 */
+        font-size: 9vw;
+        /* Down from 10 */
     }
 
     .icons-div img {
-        width: 10vw; /* Down from 11 */
+        width: 10vw;
+        /* Down from 11 */
     }
 
     .testimonial {
@@ -465,6 +830,7 @@ textarea {
     }
 
     textarea {
-        max-height: 24vw; /* Up from 12 */
+        max-height: 24vw;
+        /* Up from 12 */
     }
 }
